@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         let message = "The value is: \(currentValue)" + "\nThe target value is: \(targetValue)"
         
         //1 create alert view
-       let alert = UIAlertController(title: "Hello World", message: message, preferredStyle:.alert)
+       let alert = UIAlertController(title: "Guess the Number Game", message: message, preferredStyle:.alert)
         //2 button that user taps to dismiss vc
         let action = UIAlertAction(title: "Awesome", style: .default, handler: nil)
         //3 add th button to alert view
@@ -21,6 +21,8 @@ class ViewController: UIViewController {
              //4 present view on screen
         present(alert, animated: true, completion: nil)
         startNewRound()
+       
+       
 
     }
     override func viewDidLoad() {
@@ -29,6 +31,9 @@ class ViewController: UIViewController {
         currentValue = Int(slider.value)
         
         startNewRound()
+        let SliderThumbImageNormal = UIImage(named: "SliderThumb-Normal")
+        slider.setThumbImage(SliderThumbImageNormal, for: .normal)
+       
     }
 
     @IBAction func sliderHasMoved(_ sender: Any) {
@@ -47,7 +52,16 @@ class ViewController: UIViewController {
         currentValue = Int(slider.value)
         
         targetValue = Int.random(in: 0...100)
+        updateTargetLabel()
         
     }
+    @IBOutlet weak var targetLabel: UILabel!
+    
+ 
+    func updateTargetLabel () {
+        targetLabel.text  = "\(targetValue)"
+    
+    }
+
 }
 
